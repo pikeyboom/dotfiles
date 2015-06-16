@@ -13,7 +13,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Solarized colour scheme
-Plugin 'altercation/vim-colors-solarized.git'
+"Plugin 'altercation/vim-colors-solarized.git'
 
 " NERD Tree - file explorer for vim
 Plugin 'scrooloose/nerdtree'
@@ -33,7 +33,7 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
-colorscheme solarized
+colorscheme slate
 syntax enable
 set background=dark
 set nomousehide
