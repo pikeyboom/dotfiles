@@ -1,6 +1,3 @@
-# Update the dotfiles repo to make sure we have all changes:
-~/dotfiles/doupdate.sh
-
 source ~/dotfiles/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
@@ -22,9 +19,6 @@ antigen apply
 export EDITOR=vim
 
 export TERM="xterm-256color"
-
-# Set up ninja tab completion:
-source ~/dotfiles/ninja/_ninja
 
 # Adjust the path
 source ~/.pathrc
