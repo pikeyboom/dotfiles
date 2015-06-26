@@ -23,3 +23,4 @@ export TERM="xterm-256color"
 # Adjust the path
 source ~/.pathrc
 
+alias ja='ninja'

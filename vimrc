@@ -39,6 +39,10 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " A plugin to switch between header and source files:
 Plugin 'derekwyatt/vim-fswitch'
 
+" A plugin to use rtags in vim. (rtags allows for
+" code following, some refactoring, etc.)
+Plugin 'lyuts/vim-rtags'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -53,6 +57,8 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+set rtp+=~/dotfiles
 
 colorscheme solarized
 syntax enable
@@ -80,9 +86,16 @@ let g:ycm_confirm_extra_conf = 0
 " Let YouCompleteMe use tag files for completion as well:
 let g:ycm_collect_identifiers_from_tags_files = 1
 
-
 " NERD Tree shortcut
 map <F5> :NERDTreeToggle<CR>
 let NERDTreeChDirMode = 2
 nnoremap <leader>n :NERDTree .<CR>
 
+" Ultisnips config:
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
