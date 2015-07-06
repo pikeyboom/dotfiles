@@ -60,9 +60,9 @@ filetype plugin indent on    " required
 
 set rtp+=~/dotfiles
 
-colorscheme solarized
 syntax enable
 set background=dark
+colorscheme solarized
 set nomousehide
 
 set nu          "show line numbers
