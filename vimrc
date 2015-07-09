@@ -24,6 +24,9 @@ Plugin 'rdnetto/YCM-Generator'
 " NERD Tree - file explorer for vim
 Plugin 'scrooloose/nerdtree'
 
+" Ctrl P
+Plugin 'kien/ctrlp.vim'
+
 " vim-airline: 'Lean & mean status/tabline for vim that's light as air.'
 Plugin 'bling/vim-airline'
 
@@ -70,6 +73,13 @@ set ignorecase  "ignore case for searching
 set autochdir   "current directory as path to current file
 
 set wildmenu
+
+" CtrlP options
+" Set up Ctrl-P shortcut key for Ctrl-P:
+let g:ctrlp_map = '<c-k>'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>m :CtrlPMRU<CR>
+map <leader><Tab> :CtrlPBuffer<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2

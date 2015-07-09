@@ -27,3 +27,4 @@ source ~/dotfiles/ninja/_ninja
 source ~/.pathrc
 
 alias ja='ninja'
+alias ls='ls -ltr'
