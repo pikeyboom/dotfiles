@@ -30,21 +30,27 @@ Plugin 'kien/ctrlp.vim'
 " vim-airline: 'Lean & mean status/tabline for vim that's light as air.'
 Plugin 'bling/vim-airline'
 
+" A plugin to switch between header and source files:
+Plugin 'derekwyatt/vim-fswitch'
+
 " Plugin to assist with commenting out blocks of text:
 Plugin 'tomtom/tcomment_vim'
 
 " Track the ultisnips engine.
 Plugin 'SirVer/ultisnips'
 
+" Snippets are separted from the engine. Add this if you want them
+Plugin 'honza/vim-snippets'
+
 " Better C++ Syntax Highlighting:
 Plugin 'octol/vim-cpp-enhanced-highlight'
-
-" A plugin to switch between header and source files:
-Plugin 'derekwyatt/vim-fswitch'
 
 " A plugin to use rtags in vim. (rtags allows for
 " code following, some refactoring, etc.)
 Plugin 'lyuts/vim-rtags'
+
+" Plugin to highlight the variable under the cursor:
+Plugin 'OrelSokolov/HiCursorWords'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -109,3 +115,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+" Mapping for fswitch, to switch between header
+" and source:
+nmap <silent> <Leader>of :FSHere<cr>
+
+" Key mappings for clang-format, to format source code:
+map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
