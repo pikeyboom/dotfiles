@@ -52,6 +52,16 @@ Plugin 'lyuts/vim-rtags'
 " Plugin to highlight the variable under the cursor:
 Plugin 'OrelSokolov/HiCursorWords'
 
+" Plugin to help manage vim buffers:
+Plugin 'jeetsukumaran/vim-buffergator'
+
+" Plugin to generate doxygen documentation strings:
+Plugin 'mrtazz/DoxygenToolkit.vim'
+
+" fugitive - a Git wrapper for vim. Also allows current
+" git branch to be shown by vim-airline:
+Plugin 'tpope/vim-fugitive'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
