@@ -15,6 +15,9 @@ Plugin 'gmarik/Vundle.vim'
 " Solarized colour scheme
 Plugin 'altercation/vim-colors-solarized.git'
 
+" Kalisi colour scheme
+Plugin 'freeo/vim-kalisi'
+
 " YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
 
@@ -81,9 +84,8 @@ set rtp+=~/dotfiles
 
 syntax enable
 set background=dark
-colorscheme solarized
-set nomousehide
-
+colorscheme kalisi
+set nomousehide 
 set nu          "show line numbers
 set ignorecase  "ignore case for searching
 set autochdir   "current directory as path to current file
