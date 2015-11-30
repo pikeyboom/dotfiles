@@ -134,3 +134,9 @@ nmap <silent> <Leader>of :FSHere<cr>
 
 " Key mappings for clang-format, to format source code:
 map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
+
+" cmake command
+:command! Cmake !cmake ~/workspace/opal2/build-3dri-release
+
+" Build ninja target in vim
+:command! -nargs=1 Ninja execute "!cd ~/workspace/opal2/build-3dri-release && ninja " string(<q-args>) 

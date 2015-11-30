@@ -18,6 +18,12 @@ antigen apply
 
 export EDITOR=vim
 
+# Set ccache to use distcc:
+#export CCACHE_PREFIX="distcc"
+
+# Ensure Google Test tests always show colour output:
+export GTEST_COLOR=yes
+
 export TERM="xterm-256color"
 
 # Set up ninja tab completion
@@ -27,4 +33,7 @@ source ~/dotfiles/ninja/_ninja
 source ~/.pathrc
 
 alias ja='ninja'
-alias l='ls -ltr'
+alias l='ls -lhtr'
+
+alias rand4='echo $(($RANDOM % 4))'
+
