@@ -33,6 +33,16 @@ Plugin 'kien/ctrlp.vim'
 " vim-airline: 'Lean & mean status/tabline for vim that's light as air.'
 Plugin 'bling/vim-airline'
 
+" fugitive - a Git wrapper for vim. Also allows current
+" git branch to be shown by vim-airline:
+Plugin 'tpope/vim-fugitive'
+
+" Plugin to help manage vim buffers:
+Plugin 'jeetsukumaran/vim-buffergator'
+
+" Plugin to highlight the variable under the cursor:
+Plugin 'OrelSokolov/HiCursorWords'
+
 " A plugin to switch between header and source files:
 Plugin 'derekwyatt/vim-fswitch'
 
@@ -42,7 +52,7 @@ Plugin 'tomtom/tcomment_vim'
 " Track the ultisnips engine.
 Plugin 'SirVer/ultisnips'
 
-" Snippets are separted from the engine. Add this if you want them
+" Snippets are separated from the engine. Add this if you want them
 Plugin 'honza/vim-snippets'
 
 " Better C++ Syntax Highlighting:
@@ -52,18 +62,9 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " code following, some refactoring, etc.)
 Plugin 'lyuts/vim-rtags'
 
-" Plugin to highlight the variable under the cursor:
-Plugin 'OrelSokolov/HiCursorWords'
-
-" Plugin to help manage vim buffers:
-Plugin 'jeetsukumaran/vim-buffergator'
-
 " Plugin to generate doxygen documentation strings:
 Plugin 'mrtazz/DoxygenToolkit.vim'
 
-" fugitive - a Git wrapper for vim. Also allows current
-" git branch to be shown by vim-airline:
-Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -134,6 +135,11 @@ nmap <silent> <Leader>of :FSHere<cr>
 
 " Key mappings for clang-format, to format source code:
 map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
+
+" custom vim split commands
+set splitbelow
+set splitright
+
 
 " cmake command
 :command! Cmake !cmake ~/workspace/opal2/build-3dri-release

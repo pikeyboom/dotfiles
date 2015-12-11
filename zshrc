@@ -19,7 +19,7 @@ antigen apply
 export EDITOR=vim
 
 # Set ccache to use distcc:
-#export CCACHE_PREFIX="distcc"
+export CCACHE_PREFIX="distcc"
 
 # Ensure Google Test tests always show colour output:
 export GTEST_COLOR=yes
