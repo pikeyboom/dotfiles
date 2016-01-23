@@ -65,6 +65,29 @@ Plugin 'lyuts/vim-rtags'
 " Plugin to generate doxygen documentation strings:
 Plugin 'mrtazz/DoxygenToolkit.vim'
 
+" tagbar - allows browsing tags of the current source file
+" from ctags. Good for seeing functions, variables, etc.
+Plugin 'majutsushi/tagbar'
+
+" Plugin for syntax highlighting of plain text notes:
+Plugin 'junegunn/vim-journal'
+
+" Plugin to allow easy alignment around various symbols (e.g.
+" line up a number of lines with equal signs on the equal signs)
+Plugin 'junegunn/vim-easy-align'
+
+" A plugin to make it easier to use motions to jump
+" to words and characters:
+Plugin 'easymotion/vim-easymotion'
+
+" Plugin to provide a useful start screen in vim:
+Plugin 'mhinz/vim-startify'
+
+" Plugin to make it easy to delete a buffer and close the file:
+Plugin 'mhinz/vim-sayonara'
+
+" Base16 color schemes
+Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -85,7 +108,7 @@ set rtp+=~/dotfiles
 
 syntax enable
 set background=dark
-colorscheme kalisi
+colorscheme base16-flat
 set nomousehide 
 set nu          "show line numbers
 set ignorecase  "ignore case for searching
@@ -146,3 +169,26 @@ set splitright
 
 " Build ninja target in vim
 :command! -nargs=1 Ninja execute "!cd ~/workspace/opal2/build-3dri-release && ninja " string(<q-args>) 
+
+" Tmux style pane navigation
+nnoremap <C-B>h <C-W>h
+nnoremap <C-B>j <C-W>j
+nnoremap <C-B>k <C-W>k
+nnoremap <C-B>l <C-W>l
+
+nnoremap <C-B>- <C-W>_
+nnoremap <C-B>= <C-W>=
+
+nnoremap <F2> :YcmCompleter GoTo<CR>
+" tagbar config. Enable it using this key map:
+nmap <F8> :TagbarToggle<CR>
+" Have it autofocus on open:
+let g:tagbar_autofocus = 1
+
+" Tell vim to look for a tags file in the current
+" directory, and all the way up until it finds one:
+set tags=./tags;/
+
+" Mapping to close the file in the current buffer:
+nnoremap <leader>q :Sayonara!<CR>
+
