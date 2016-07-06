@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set ts=4 sw=4 expandtab
+set ts=2 sw=2 tw=80 expandtab
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -107,10 +107,14 @@ set wildmenu
 
 " CtrlP options
 " Set up Ctrl-P shortcut key for Ctrl-P:
-let g:ctrlp_map = '<c-k>'
+" let g:ctrlp_working_path_mode = 0
+
+" let g:ctrlp_map = '<c-k>'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>m :CtrlPMRU<CR>
 map <leader><Tab> :CtrlPBuffer<CR>
+
+noremap <C-k> :CtrlP ~/oxts3000/src/<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
@@ -143,7 +147,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Mapping for fswitch, to switch between header
 " and source:
-nmap <silent> <Leader>of :FSHere<cr>
+nmap <F4> :FSHere<cr>
 
 " Key mappings for clang-format, to format source code:
 map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
@@ -152,12 +156,6 @@ map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
 set splitbelow
 set splitright
 
-
-" cmake command
-:command! Cmake !cmake ~/workspace/opal2/build-3dri-release
-
-" Build ninja target in vim
-:command! -nargs=1 Ninja execute "!cd ~/workspace/opal2/build-3dri-release && ninja " string(<q-args>) 
 
 " Tmux style pane navigation
 nnoremap <C-B>h <C-W>h
@@ -168,7 +166,10 @@ nnoremap <C-B>l <C-W>l
 nnoremap <C-B>- <C-W>_
 nnoremap <C-B>= <C-W>=
 
+" YCM
 nnoremap <F2> :YcmCompleter GoTo<CR>
+nnoremap <F3> :YcmCompleter GetType<CR>
+
 " tagbar config. Enable it using this key map:
 nmap <F8> :TagbarToggle<CR>
 " Have it autofocus on open:
@@ -181,3 +182,14 @@ set tags=./tags;/
 " Mapping to close the file in the current buffer:
 nnoremap <leader>q :Sayonara!<CR>
 
+" Set up fswitch to work with the directory structures
+" I'm currently using:
+augroup fswitch_cpp
+   au!
+   au BufEnter *.h let b:fswitchdst  = 'cpp,hpp,cc,c'
+   au BufEnter *.h let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,reg:|include/\w\+|src|,impl'
+   au BufEnter *.cpp let b:fswitchdst  = 'hpp,h'
+   au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,../include,reg:|src/\(\w\+\)/src|src/\1/include/**|'
+   au BufEnter *.hpp let b:fswitchdst  = 'h,cpp'
+   au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,..'
+augroup END
