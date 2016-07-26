@@ -89,6 +89,9 @@ Plugin 'mhinz/vim-sayonara'
 " Base16 color schemes
 Plugin 'chriskempson/base16-vim'
 
+" vim-tmux navigator
+Plugin 'christoomey/vim-tmux-navigator' 
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -97,6 +100,7 @@ set rtp+=~/dotfiles
 
 syntax enable
 set background=dark
+let base16colorspace=256
 colorscheme base16-flat
 set nomousehide 
 set nu          "show line numbers
@@ -114,7 +118,7 @@ let g:ctrlp_cmd = 'CtrlP'
 map <leader>m :CtrlPMRU<CR>
 map <leader><Tab> :CtrlPBuffer<CR>
 
-noremap <C-k> :CtrlP ~/oxts3000/src/<CR>
+noremap <c-f> :CtrlP ~/workspace/src/<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
@@ -158,10 +162,10 @@ set splitright
 
 
 " Tmux style pane navigation
-nnoremap <C-B>h <C-W>h
-nnoremap <C-B>j <C-W>j
-nnoremap <C-B>k <C-W>k
-nnoremap <C-B>l <C-W>l
+nnoremap <c-j> <C-w>j
+nnoremap <c-k> <C-w>k
+nnoremap <c-h> <C-w>h
+nnoremap <c-l> <C-w>l
 
 nnoremap <C-B>- <C-W>_
 nnoremap <C-B>= <C-W>=
@@ -181,6 +185,18 @@ set tags=./tags;/
 
 " Mapping to close the file in the current buffer:
 nnoremap <leader>q :Sayonara!<CR>
+
+" tmux navigation
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+"
+" This will execute the update command on leaving vim to a tmux pane. Default is Zero
+let g:tmux_navigator_save_on_switch = 1
 
 " Set up fswitch to work with the directory structures
 " I'm currently using:
