@@ -1,0 +1,6 @@
+*.swp
+*.swo
+.clang-format
+.ycm_extra_conf.*
+CMakeCache.txt
+CMakeFiles/
