@@ -118,7 +118,7 @@ let g:ctrlp_cmd = 'CtrlP'
 map <leader>m :CtrlPMRU<CR>
 map <leader><Tab> :CtrlPBuffer<CR>
 
-noremap <c-f> :CtrlP ~/workspace/src/<CR>
+noremap <c-f> :CtrlP ~/all_develop/src/<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
@@ -194,7 +194,10 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
-"
+
+" terminal mode escape mapping
+:tnoremap <Esc> <c-\><c-n> 
+
 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 let g:tmux_navigator_save_on_switch = 1
 
