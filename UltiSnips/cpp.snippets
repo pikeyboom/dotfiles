@@ -29,4 +29,19 @@ namespace${2/.+/ /m}${2:`!p snip.rv = snip.basename or "name"`}
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
 
+# Deprecated headers
+snippet dep "Depcrecated Header file"
+#ifndef DEPRECATED_${1:HEADER_NAME}_H
+#define DEPRECATED_$1_H
+
+#ifdef __DEPRECATED
+#warning This header has been deprecated. Use ${2:header_name} instead.
+
+#include \<$2\>
+#endif
+
+#endif // DEPRECATED_$1_H
+endsnippet
+
+
 # vim:ft=snippets:

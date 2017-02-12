@@ -6,3 +6,6 @@ export PATH="${HOME}/bin:$PATH"
 # PATH=${CUDA_HOME}/bin:${PATH}
 # export PATH
 
+# Don't use cached preprocessor output
+export CCACHE_CPP2=true
+

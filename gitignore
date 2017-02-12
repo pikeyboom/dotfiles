@@ -1,5 +1,7 @@
 *.swp
 *.swo
+*.autosave
+*.pro.user
 .clang-format
 .ycm_extra_conf.*
 CMakeCache.txt

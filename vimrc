@@ -3,6 +3,8 @@ filetype off                  " required
 
 set ts=2 sw=2 tw=80 expandtab
 
+autocmd BufNewFile,BufRead *CMakeLists.txt set tw=160
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -92,6 +94,19 @@ Plugin 'chriskempson/base16-vim'
 " vim-tmux navigator
 Plugin 'christoomey/vim-tmux-navigator' 
 
+" vim-sleuth - heuristically determines spacing in terms
+" of tabs, spaces, etc. based on what's in use in the
+" current file and the file around it:
+Plugin 'tpope/vim-sleuth'
+
+" Tab-completion for '/' searching
+"Plugin 'vim-scripts/SearchComplete'
+
+" matchit plugin
+Plugin 'tmhedberg/matchit'
+
+Plugin 'mhinz/vim-grepper'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -118,7 +133,7 @@ let g:ctrlp_cmd = 'CtrlP'
 map <leader>m :CtrlPMRU<CR>
 map <leader><Tab> :CtrlPBuffer<CR>
 
-noremap <c-f> :CtrlP ~/all_develop/src/<CR>
+noremap <c-f> :CtrlP ~/nightly/src/<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
@@ -128,7 +143,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
+let g:airline_powerline_fonts = 1
 " Turn off prompting to load .ycm_extra_conf.py:
 let g:ycm_confirm_extra_conf = 0
 
@@ -167,8 +182,8 @@ nnoremap <c-k> <C-w>k
 nnoremap <c-h> <C-w>h
 nnoremap <c-l> <C-w>l
 
-nnoremap <C-B>- <C-W>_
-nnoremap <C-B>= <C-W>=
+" nnoremap <C-B>- <C-W>_
+" nnoremap <C-B>= <C-W>=
 
 " YCM
 nnoremap <F2> :YcmCompleter GoTo<CR>
