@@ -22,7 +22,8 @@ antigen theme blinks
 antigen apply
 
 export EDITOR=nvim
-# export CCACHE_PREFIX="distcc"
+
+export CCACHE_PREFIX="distcc"
 
 # Ensure Google Test tests always show colour output:
 export GTEST_COLOR=yes
@@ -37,17 +38,19 @@ source ~/.pathrc
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-atelier-estuary.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
+LS_COLORS=${LS_COLORS/sg=30;43:/sg=00:}
+
 alias l='ls -lhtr'
+
+# elderberry aliases
 alias eb='elderberry'
 alias ja='ninja -j48 && ninja tests -j48'
-# alias ja='ninja -j8 && ninja tests -j8' # no distcc
 alias ebm="CXX='ccache /usr/bin/c++'  elderberry make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release; cd build/ && ja"
 alias ebmd="CXX='ccache /usr/bin/c++'  elderberry make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug; cd build/ && ja"
 alias ebp="elderberry populate"
-
-alias findxml='find ./ -name "*.xml"'
-alias findpcd='find ./ -name "*.pcd"'
-alias findcsv='find ./ -name "*.csv"'
+alias ebstatus='elderberry git status -s | grep -v "  done"'
+alias ebbranch='elderberry git branch | egrep "\*|Module"'
+alias ebinit='elderberry init --name "dpike" --email "david.pike@quanergy.com" --manifest-dir ~/stash/manifests'
 
 source /opt/ros/indigo/setup.zsh
 source ~/nightly/devel/setup.zsh
