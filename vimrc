@@ -144,6 +144,10 @@ let g:tmux_navigator_save_on_switch = 1
 " minimaist vim-sneak
 let g:sneak#label = 1
 
+" replace s with f for sneaking
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+
 " Set up fswitch to work with the directory structures
 " I'm currently using:
 augroup fswitch_cpp
