@@ -56,7 +56,7 @@ source ~/dotfiles/quanergyrc
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # source local rc commands
-if [ ! -f ~/.localrc ]; then
+if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
