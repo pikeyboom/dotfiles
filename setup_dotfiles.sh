@@ -1,6 +1,8 @@
 #!/bin/zsh
 
 declare base=${HOME}/dotfiles
+mkdir -p ${base}
+
 # Check for required dependencies before continuing:
 hash git 2>/dev/null || { echo "Error: git is not installed. Please install git first."; exit 1;}
 hash curl 2>/dev/null || { echo "Error: curl is not installed. Please install curl first."; exit 1;}
@@ -13,9 +15,8 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 
 # Set up antigen, the zsh plugin manager:
-mkdir -p ${base}
-if [ ! -d ${base}/antigen ]; then
-	git clone https://github.com/zsh-users/antigen ${base}/antigen
+if [ ! -d ~/.zsh/antigen ]; then
+	git clone https://github.com/zsh-users/antigen ~/.zsh/antigen
 fi
 
 # Get vim-plug
