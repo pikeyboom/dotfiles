@@ -1,25 +1,45 @@
 #!/bin/zsh
 
-# This script sets up symlinks to all the dotfiles
-# in the user's home directory.
+declare base=${HOME}/dotfiles
+# Check for required dependencies before continuing:
+hash git 2>/dev/null || { echo "Error: git is not installed. Please install git first."; exit 1;}
+hash curl 2>/dev/null || { echo "Error: curl is not installed. Please install curl first."; exit 1;}
+hash unzip 2>/dev/null || { echo "Error: unzip is not installed. Please install unzip first."; exit 1;}
 
-if [[ "$(which realpath)" == "" ]]; then
-	echo "Cannot find realpath.  Use apt-get to install it"
-	declare base=$(dirname $(realpath $0))
-#	exit 1;
-else
-	#declare base=/home/$(whoami)/dotfiles
-	declare base=${HOME}/dotfiles
-fi;
+# Set up tmux plugin manager:
+mkdir -p ~/.tmux/plugins
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
-# First ensure that the submodules in this repo
-# are available and up to date:
-cd ${base}
-git submodule init
-git submodule update
-cd ~
+# Set up antigen, the zsh plugin manager:
+mkdir -p ${base}
+if [ ! -d ${base}/antigen ]; then
+	git clone https://github.com/zsh-users/antigen ${base}/antigen
+fi
 
-files=(.zshrc .vimrc .tmux.conf .gitconfig .pathrc .ctags)
+# Get vim-plug
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+if [ ! -f ~/.config/nvim/autoload/plug.vim ]; then
+	curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# Get the Base16 colour schemes
+mkdir -p ~/.config
+if [ ! -d ~/.config/base16-shell ]; then
+	git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+fi
+
+# Get the Meslo font, used by the terminal:
+if [ ! -f ~/.fonts/Meslo\ LG\ S\ Regular\ for\ Powerline.otf ]; then
+	curl -fLo ~/.fonts/Meslo\ LG\ S\ Regular\ for\ Powerline.otf https://github.com/powerline/fonts/raw/master/Meslo/Meslo%20LG%20S%20Regular%20for%20Powerline.otf
+	fc-cache -vf ~/.fonts/
+fi
+
+files=(.zshrc .vimrc .tmux.conf .gitconfig .pathrc)
 
 declare backup_dir=~/.dotfiles_backup
 

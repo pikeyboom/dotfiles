@@ -1,0 +1,15 @@
+# Quanergy aliases
+alias ebm="CXX='ccache /usr/bin/c++' elderberry make --no-cpack --extra \
+  --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release; \
+  cd build/ && ja"
+alias ebm-qsim="CXX='ccache /usr/bin/c++' elderberry make --no-cpack --extra
+  --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release \
+  -DOptiX_INSTALL_DIR=/opt/OptiX/4.0.1 -DDATA_DIR=~/QSim/data \
+  -DSCENE_DIR=~/QSim/vnv_scenarios; cd build/ && ja"
+alias ebmd="CXX='ccache /usr/bin/c++' elderberry make --no-cpack --extra \
+  --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug; \
+  cd build/ && ja"
+alias ebp="elderberry populate"
+alias ebstatus='elderberry git status -s | grep -v "  done"'
+alias ebbranch='elderberry git branch | egrep "\*|Module"'
+alias ebinit='elderberry init --name "dpike" --email "david.pike@quanergy.com"'

@@ -1,116 +1,46 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'ihacklog/HiCursorWords'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'tomtom/tcomment_vim' " Plugin to assist with commenting out blocks of text:
+Plug 'SirVer/ultisnips' " Track the ultisnips engine.
+Plug 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them
+Plug 'octol/vim-cpp-enhanced-highlight' " Better C++ Syntax Highlighting:
+Plug 'lyuts/vim-rtags' " A plugin to use rtags in vim. (rtags allows for code following, some refactoring, etc.)
+Plug 'mrtazz/DoxygenToolkit.vim' " Plugin to generate doxygen documentation strings:
+Plug 'majutsushi/tagbar' " tagbar - allows browsing tags of the current source file
+Plug 'junegunn/vim-easy-align' " Plugin to allow easy alignment around various symbols
+Plug 'easymotion/vim-easymotion' "Plugin to make it easier to use motions to jump to words and characters
+Plug 'mhinz/vim-startify' "Plugin to provide a useful start screen in vim
+Plug 'mhinz/vim-sayonara' "Plugin to make it easy to delete a buffer and close the file
+Plug 'chriskempson/base16-vim' "Base16 color schemes
+Plug 'christoomey/vim-tmux-navigator' "vim/tmux navigator
+Plug 'tpope/vim-sleuth'
+Plug 'vim-scripts/SearchComplete' " Tab-completion for '/' searching
+Plug 'tmhedberg/matchit' " matchit plugin
+Plug 'mhinz/vim-grepper'
+Plug 'justinmk/vim-sneak' " Faster than using 'f'
+
+call plug#end()            " required
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set ts=2 sw=2 tw=80 expandtab
+set ts=2 sw=2 tw=80 expandtab " quanergy convention
 
-autocmd BufNewFile,BufRead *CMakeLists.txt set tw=160
+autocmd BufNewFile,BufRead *CMakeLists.txt set tw=160 "Don't wrap CMakeLists
+autocmd BufNewFile,BufRead *.py set ts=4 sw=4 expandtab tw=0 "Python settings
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Solarized colour scheme
-Plugin 'altercation/vim-colors-solarized.git'
-
-" Kalisi colour scheme
-Plugin 'freeo/vim-kalisi'
-
-" YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
-
-" YCMGenerator - generates configs for YouCompleteMe
-Plugin 'rdnetto/YCM-Generator'
-
-" NERD Tree - file explorer for vim
-Plugin 'scrooloose/nerdtree'
-
-" Ctrl P
-Plugin 'kien/ctrlp.vim'
-
-" vim-airline: 'Lean & mean status/tabline for vim that's light as air.'
-Plugin 'bling/vim-airline'
-
-" fugitive - a Git wrapper for vim. Also allows current
-" git branch to be shown by vim-airline:
-Plugin 'tpope/vim-fugitive'
-
-" Plugin to help manage vim buffers:
-Plugin 'jeetsukumaran/vim-buffergator'
-
-" Plugin to highlight the variable under the cursor:
-Plugin 'OrelSokolov/HiCursorWords'
-
-" A plugin to switch between header and source files:
-Plugin 'derekwyatt/vim-fswitch'
-
-" Plugin to assist with commenting out blocks of text:
-Plugin 'tomtom/tcomment_vim'
-
-" Track the ultisnips engine.
-Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them
-Plugin 'honza/vim-snippets'
-
-" Better C++ Syntax Highlighting:
-Plugin 'octol/vim-cpp-enhanced-highlight'
-
-" A plugin to use rtags in vim. (rtags allows for
-" code following, some refactoring, etc.)
-Plugin 'lyuts/vim-rtags'
-
-" Plugin to generate doxygen documentation strings:
-Plugin 'mrtazz/DoxygenToolkit.vim'
-
-" tagbar - allows browsing tags of the current source file
-" from ctags. Good for seeing functions, variables, etc.
-Plugin 'majutsushi/tagbar'
-
-" Plugin for syntax highlighting of plain text notes:
-Plugin 'junegunn/vim-journal'
-
-" Plugin to allow easy alignment around various symbols (e.g.
-" line up a number of lines with equal signs on the equal signs)
-Plugin 'junegunn/vim-easy-align'
-
-" A plugin to make it easier to use motions to jump
-" to words and characters:
-Plugin 'easymotion/vim-easymotion'
-
-" Plugin to provide a useful start screen in vim:
-Plugin 'mhinz/vim-startify'
-
-" Plugin to make it easy to delete a buffer and close the file:
-Plugin 'mhinz/vim-sayonara'
-
-" Base16 color schemes
-Plugin 'chriskempson/base16-vim'
-
-" vim-tmux navigator
-Plugin 'christoomey/vim-tmux-navigator' 
-
-" vim-sleuth - heuristically determines spacing in terms
-" of tabs, spaces, etc. based on what's in use in the
-" current file and the file around it:
-Plugin 'tpope/vim-sleuth'
-
-" Tab-completion for '/' searching
-Plugin 'vim-scripts/SearchComplete'
-
-" matchit plugin
-Plugin 'tmhedberg/matchit'
-
-Plugin 'mhinz/vim-grepper'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 
+" add to runtime paths for Ultisnips
 set rtp+=~/dotfiles
 
 syntax enable
@@ -128,12 +58,11 @@ set wildmenu
 " Set up Ctrl-P shortcut key for Ctrl-P:
 " let g:ctrlp_working_path_mode = 0
 
-" let g:ctrlp_map = '<c-k>'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>m :CtrlPMRU<CR>
 map <leader><Tab> :CtrlPBuffer<CR>
 
-noremap <c-f> :CtrlP ~/nightly/src<CR>
+noremap <c-f> :CtrlP ~/develop/src<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
@@ -175,15 +104,11 @@ map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
 set splitbelow
 set splitright
 
-
 " Tmux style pane navigation
 nnoremap <c-j> <C-w>j
 nnoremap <c-k> <C-w>k
 nnoremap <c-h> <C-w>h
 nnoremap <c-l> <C-w>l
-
-" nnoremap <C-B>- <C-W>_
-" nnoremap <C-B>= <C-W>=
 
 " YCM
 nnoremap <F2> :YcmCompleter GoTo<CR>
@@ -215,6 +140,9 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 let g:tmux_navigator_save_on_switch = 1
+
+" minimaist vim-sneak
+let g:sneak#label = 1
 
 " Set up fswitch to work with the directory structures
 " I'm currently using:

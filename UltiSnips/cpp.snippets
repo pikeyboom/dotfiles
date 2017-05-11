@@ -35,9 +35,9 @@ snippet dep "Depcrecated Header file"
 #define DEPRECATED_$1_H
 
 #ifdef __DEPRECATED
-#warning This header has been deprecated. Use ${2:header_name} instead.
+#warning This header has been deprecated. Use ${2:new_header} instead.
 
-#include \<$2\>
+#include <$2>
 #endif
 
 #endif // DEPRECATED_$1_H

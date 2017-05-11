@@ -2,8 +2,6 @@ source ~/dotfiles/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
 antigen bundle command-not-found
 
@@ -23,10 +21,17 @@ antigen apply
 
 export EDITOR=nvim
 
-export CCACHE_PREFIX="distcc"
+BUILD_CORES=8
+if type distcc > /dev/null; then
+  export CCACHE_PREFIX="distcc"
+  BUILD_CORES=48
+fi
 
 # Ensure Google Test tests always show colour output:
 export GTEST_COLOR=yes
+
+# Don't use cached preprocessor output
+export CCACHE_CPP2=true
 
 # Set up ninja tab completion
 source ~/dotfiles/ninja/_ninja
@@ -38,19 +43,14 @@ source ~/.pathrc
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-atelier-estuary.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-LS_COLORS=${LS_COLORS/sg=30;43:/sg=00:}
-
 alias l='ls -lhtr'
 
-# elderberry aliases
+# general aliases
 alias eb='elderberry'
-alias ja='ninja -j48 && ninja tests -j48'
-alias ebm="CXX='ccache /usr/bin/c++'  elderberry make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release; cd build/ && ja"
-alias ebmd="CXX='ccache /usr/bin/c++'  elderberry make --no-cpack --extra --use-ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug; cd build/ && ja"
-alias ebp="elderberry populate"
-alias ebstatus='elderberry git status -s | grep -v "  done"'
-alias ebbranch='elderberry git branch | egrep "\*|Module"'
-alias ebinit='elderberry init --name "dpike" --email "david.pike@quanergy.com" --manifest-dir ~/stash/manifests'
+alias ja='ninja -j$BUILD_CORES && ninja tests -j$BUILD_CORES'
+alias now='watch -x -t -n 0.01 date +%s.%N'
 
-source /opt/ros/indigo/setup.zsh
-source ~/nightly/devel/setup.zsh
+# source quanergy run commands
+source ~/dotfiles/quanergyrc
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
