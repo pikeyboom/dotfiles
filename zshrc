@@ -54,3 +54,9 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 source ~/dotfiles/quanergyrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# source local rc commands
+if [ ! -f ~/.localrc ]; then
+  source ~/.localrc
+fi
+
