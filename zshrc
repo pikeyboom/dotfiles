@@ -14,7 +14,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle chrissicool/zsh-256color
 
 # Load the theme.
-antigen theme blinks
+antigen theme pygmalion
 
 # Tell antigen that you're done.
 antigen apply
@@ -46,12 +46,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-atelier-estuary.sh"
 alias l='ls -lhtr'
 
 # general aliases
-alias eb='elderberry'
 alias ja='ninja -j$BUILD_CORES && ninja tests -j$BUILD_CORES'
 alias now='watch -x -t -n 0.01 date +%s.%N'
-
-# source quanergy run commands
-source ~/dotfiles/quanergyrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
