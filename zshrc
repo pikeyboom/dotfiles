@@ -48,6 +48,7 @@ alias l='ls -lhtr'
 # general aliases
 alias ja='ninja -j$BUILD_CORES && ninja tests -j$BUILD_CORES'
 alias now='watch -x -t -n 0.01 date +%s.%N'
+alias du='du -h --max-depth=1'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -62,7 +62,7 @@ let g:ctrlp_cmd = 'CtrlP'
 map <leader>m :CtrlPMRU<CR>
 map <leader><Tab> :CtrlPBuffer<CR>
 
-noremap <c-f> :CtrlP ~/develop/src<CR>
+noremap <c-f> :CtrlP ~/current/src<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
