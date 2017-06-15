@@ -60,7 +60,7 @@ let base16colorspace=256
 colorscheme base16-flat
 
 " fzf options
-noremap <c-f> :Files ~/workspaces/current/src<CR>
+noremap <c-f> :Files<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
