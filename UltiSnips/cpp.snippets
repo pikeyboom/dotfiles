@@ -43,5 +43,36 @@ snippet dep "Depcrecated Header file"
 #endif // DEPRECATED_$1_H
 endsnippet
 
+snippet gtest "GTest C++ template"
+#include <gtest/gtest.h>
+
+namespace quanergy
+{
+	namespace test
+	{
+		class ${1:TestClassname} : public ::testing::Test
+		{
+		public:
+			${1}() {}
+			~${1}() {}
+
+			virtual void SetUp() {}
+			virtual void TearDown() {}
+		};
+
+		TEST_F(${1}, FirstTest)
+		{
+		};
+
+	} // test
+} // quanergy
+
+int main(int argc, char** argv)
+{
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+endsnippet
+
 
 # vim:ft=snippets:
