@@ -135,9 +135,6 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
-" terminal mode escape mapping
-:tnoremap <Esc> <c-\><c-n> 
-
 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 let g:tmux_navigator_save_on_switch = 1
 
