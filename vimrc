@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator'
 Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -27,18 +26,30 @@ Plug 'vim-scripts/SearchComplete' " Tab-completion for '/' searching
 Plug 'tmhedberg/matchit' " matchit plugin
 Plug 'mhinz/vim-grepper'
 Plug 'justinmk/vim-sneak' " Faster than using 'f'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
+Plug 'junegunn/fzf.vim'
 
 call plug#end()            " required
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set ts=2 sw=2 tw=80 expandtab " quanergy convention
+set expandtab
+set splitbelow
+set splitright
+set number
+set ignorecase
+set smartcase
+set nomousehide 
+set autochdir   "current directory as path to current file
+set wildmenu
 
-autocmd BufNewFile,BufRead *CMakeLists.txt set tw=160 "Don't wrap CMakeLists
-autocmd BufNewFile,BufRead *.py set ts=4 sw=4 expandtab tw=0 "Python settings
+autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
+autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy convention
 
 filetype plugin indent on    " required
+" Never automatically continue comment on next line
+" au FileType * set fo-=c fo-=r fo-=o
 
 " add to runtime paths for Ultisnips
 set rtp+=~/dotfiles
@@ -47,22 +58,14 @@ syntax enable
 set background=dark
 let base16colorspace=256
 colorscheme base16-flat
-set nomousehide 
-set nu          "show line numbers
-set ignorecase  "ignore case for searching
-set autochdir   "current directory as path to current file
 
-set wildmenu
+" fzf options
+noremap <c-f> :Files ~/workspaces/current/src<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-i': 'vsplit' }
 
-" CtrlP options
-" Set up Ctrl-P shortcut key for Ctrl-P:
-" let g:ctrlp_working_path_mode = 0
-
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>m :CtrlPMRU<CR>
-map <leader><Tab> :CtrlPBuffer<CR>
-
-noremap <c-f> :CtrlP ~/current/src<CR>
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
@@ -101,8 +104,6 @@ nmap <F4> :FSHere<cr>
 map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
 
 " custom vim split commands
-set splitbelow
-set splitright
 
 " Tmux style pane navigation
 nnoremap <c-j> <C-w>j
