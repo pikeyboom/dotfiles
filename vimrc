@@ -41,7 +41,6 @@ set number
 set ignorecase
 set smartcase
 set nomousehide 
-set autochdir   "current directory as path to current file
 set wildmenu
 
 autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
