@@ -38,7 +38,13 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-files=(.zshrc .vimrc .tmux.conf .gitconfig .pathrc .Xresources)
+if [ ! -f ~/.gitconfig ]; then
+  echo "No gitconfig. Git options will not be appended"
+else
+  cat ${base}/gitconfig >> ~/.gitconfig
+fi
+
+files=(.zshrc .vimrc .tmux.conf .pathrc .Xresources)
 
 # setup dotfiles
 mkdir -p ~/.dotfiles_backup

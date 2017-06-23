@@ -1,18 +1,14 @@
-[user]
-	name = dpike 
-	email = david.pike@quanergy.com
-
 [color]
-	ui = auto
+  ui = auto
 
 [alias]
-lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [credential]
-	helper = cache --timeout=28800
+  helper = cache --timeout=28800
 
 [push]
-	default = simple
+  default = simple
 
 [core]
   excludesfile = ~/dotfiles/gitignore
