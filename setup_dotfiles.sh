@@ -38,10 +38,10 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-if [ ! -f ~/.gitconfig ]; then
-  echo "No gitconfig. Git options will not be appended"
+if [ -f ~/.gitconfig ]; then
+  echo "Git config already exists. Git options will not be appended"
 else
-  cat ${base}/gitconfig >> ~/.gitconfig
+  cat ${base}/gitconfig > ~/.gitconfig
 fi
 
 files=(.zshrc .vimrc .tmux.conf .pathrc .Xresources)
@@ -68,10 +68,5 @@ for f in $files; do
     echo "Skipping synlink $f"
   fi
 done;
-
-# # link vimrc
-# if [ ! -f .vimrc ]; then
-#   ln -s ${base}/vimrc .vimrc
-# fi
 
 cd && source .zshrc
