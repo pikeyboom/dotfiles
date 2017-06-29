@@ -41,10 +41,10 @@ fi
 if [ -f ~/.gitconfig ]; then
   echo "Git config already exists. Git options will not be appended"
 else
-  cat ${base}/gitconfig > ~/.gitconfig
+  cat ${base}/gitconfig.include > ~/.gitconfig
 fi
 
-files=(.zshrc .vimrc .tmux.conf .pathrc .Xresources)
+files=(.zshrc .vimrc .tmux.conf .pathrc)
 
 # setup dotfiles
 mkdir -p ~/.dotfiles_backup
