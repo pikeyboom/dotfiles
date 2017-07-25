@@ -7,13 +7,6 @@ hash git 2>/dev/null || { echo "Error: git is not installed. Please install git 
 hash curl 2>/dev/null || { echo "Error: curl is not installed. Please install curl first."; exit 1;}
 hash unzip 2>/dev/null || { echo "Error: unzip is not installed. Please install unzip first."; exit 1;}
 
-# Get font
-if [ ! -f ~/.fonts/Meslo\ LG\ M\ Regular\ for\ Powerline.ttf ]; then
-  curl -fLo ~/.fonts/Meslo\ LG\ M\ Regular\ for\ Powerline.ttf --create-dirs \
-    https://github.com/powerline/fonts/raw/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf
-  fc-cache -vf ~/.fonts/
-fi
-
 # Get the Base16 colour schemes
 mkdir -p ~/.config
 if [ ! -d ~/.config/base16-shell ]; then
