@@ -19,10 +19,9 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# Set up antigen, the zsh plugin manager:
-mkdir -p ~/.zsh
-if [ ! -d ~/.zsh/antigen ]; then
-  git clone https://github.com/zsh-users/antigen ~/.zsh/antigen
+# Set up zgen, the zsh plugin manager:
+if [ ! -d ~/.zgen ]; then
+  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 fi
 
 # Get vim-plug
