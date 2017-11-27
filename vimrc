@@ -97,7 +97,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Mapping for fswitch, to switch between header
 " and source:
-nmap <F4> :FSHere<cr>
+nnoremap <leader>s :FSHere<CR>
 
 " Key mappings for clang-format, to format source code:
 map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
@@ -111,8 +111,14 @@ nnoremap <c-h> <C-w>h
 nnoremap <c-l> <C-w>l
 
 " YCM
-nnoremap <F2> :YcmCompleter GoTo<CR>
-nnoremap <F3> :YcmCompleter GetType<CR>
+nnoremap <leader>ci :YcmCompleter GoToImprecise<CR>
+nnoremap <leader>cj :YcmCompleter GoTo<CR>
+" nnoremap <leader>ch :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>cl :YcmCompleter GoToDefinition<CR>
+
+nnoremap <leader>ct :YcmCompleter GetType<CR>
+nnoremap <leader>cd :YcmCompleter GetDoc<CR>
+nnoremap <leader>cr :YcmCompleter GoToReferences<CR>
 
 " tagbar config. Enable it using this key map:
 nmap <F8> :TagbarToggle<CR>
