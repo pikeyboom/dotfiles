@@ -42,13 +42,6 @@ export GTEST_COLOR=yes
 # Set up ninja tab completion
 source ~/dotfiles/ninja/_ninja
 
-# Adjust the path
-source ~/.pathrc
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-atelier-savanna.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 alias l='ls -lhtr'
 
 # general aliases
@@ -64,6 +57,9 @@ alias checkavx1='find -type f -executable | xargs objdump --disassemble | egrep 
 alias checkavx2='find -type f -executable | xargs objdump --disassemble | egrep "(vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vbroadcasti128|vinserti128|vextracti128|vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vpgatherdd|vpgatherdq|vpgatherqd|vpgatherqq|vpmaskmovd|vpmaskmovq|vpermps|vpermd|vpermpd|vpermq|vperm2i128|vpblendd|vpsllvd|vpsllvq|vpsrlvd|vpsrlvq|vpsravd)"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Adjust the path
+source ~/.pathrc
 
 # source local rc commands
 if [ -f ~/.localrc ]; then
