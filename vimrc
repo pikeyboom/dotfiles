@@ -45,6 +45,10 @@ set wildmenu
 
 autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy convention
+autocmd Filetype xml setlocal ts=4 sw=4 tw=0
+
+" Set xmllint to 4 space indentation
+let $XMLLINT_INDENT='    '
 
 filetype plugin indent on    " required
 " Never automatically continue comment on next line
@@ -140,6 +144,9 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 let g:tmux_navigator_save_on_switch = 1
