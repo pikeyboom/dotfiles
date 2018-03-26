@@ -30,6 +30,7 @@ BUILD_CORES=8
 
 # Default to ccache if available
 if type ccache > /dev/null; then
+  ccache -M 5 > /dev/null
   export CXX='ccache /usr/bin/c++'
   # Don't use cached preprocessor output
   export CCACHE_CPP2=true
@@ -52,9 +53,15 @@ alias l='ls -lhtr'
 
 # general aliases
 alias ja='ninja -j$BUILD_CORES && ninja tests -j$BUILD_CORES'
+alias make='make -j$BUILD_CORES'
 alias now='watch -x -t -n 0.01 date +%s.%N'
 alias du='du -h --max-depth=1'
 alias df='df -h'
+
+# Alias to check for avx and avx2 instructions
+alias checkavx1='find -type f -executable | xargs objdump --disassemble | egrep "(vbroadcastss|vbroadcastsd|vbroadcastf128|vinsertf128|vextractf128|vmaskmovps|vmaskmovpd|vpermilps|vpermilpd|vperm2f128|vzeroall|vzeroupper)"'
+
+alias checkavx2='find -type f -executable | xargs objdump --disassemble | egrep "(vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vbroadcasti128|vinserti128|vextracti128|vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vpgatherdd|vpgatherdq|vpgatherqd|vpgatherqq|vpmaskmovd|vpmaskmovq|vpermps|vpermd|vpermpd|vpermq|vperm2i128|vpblendd|vpsllvd|vpsllvq|vpsrlvd|vpsrlvq|vpsravd)"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
