@@ -12,6 +12,9 @@ if [ ! -f ~/.fonts/Meslo\ LG\ M\ Regular\ for\ Powerline.ttf ]; then
   fc-cache -vf ~/.fonts/
 fi
 
+# Copy perl script to copy selection to clipboard
+sudo cp ${base}/xkr-clipboard.pl /usr/lib/urxvt/perl/xkr-clipboard
+
 cpp ${base}/Xresources > ~/.Xresources
 
 xrdb -load ~/.Xresources

@@ -7,6 +7,12 @@ URxvt.boldFont: xft:Meslo LG M for Powerline:style=RegularForPowerline:bold:size
 URxvt.internalBorder: 0
 URxvt.letterSpace: -1
 
+! Configure Ctrl+Shift+C to copy selection to clipbard
+URxvt.perl-ext-common:        default,xkr-clipboard
+URxvt.iso14755:               false
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Control-Insert:  perl:clipboard:copy
+
 ! Base16 Atelier Estuary
 ! Scheme: Bram de Haan (http://atelierbramdehaan.nl)
 
