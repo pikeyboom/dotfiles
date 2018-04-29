@@ -42,6 +42,7 @@ set ignorecase
 set smartcase
 set nomousehide 
 set wildmenu
+set smartcase
 
 autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy convention
