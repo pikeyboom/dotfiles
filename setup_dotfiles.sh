@@ -3,9 +3,18 @@
 declare base=${HOME}/dotfiles
 
 # Check for required dependencies before continuing:
-hash git 2>/dev/null || { echo "Error: git is not installed. Please install git first."; exit 1;}
-hash curl 2>/dev/null || { echo "Error: curl is not installed. Please install curl first."; exit 1;}
-hash unzip 2>/dev/null || { echo "Error: unzip is not installed. Please install unzip first."; exit 1;}
+if [[ ! -a $(which git) ]]; then
+    echo "Error: git is not installed. Please install git first.";
+    exit 1
+fi
+if [[ ! -a $(which curl) ]]; then
+    echo "Error: curl is not installed. Please install curl first.";
+    exit 1
+fi
+if [[ ! -a $(which unzip) ]]; then
+    echo "Error: unzip is not installed. Please install unzip first.";
+    exit 1
+fi
 
 # Get the Base16 colour schemes
 mkdir -p ~/.config

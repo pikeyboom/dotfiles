@@ -2,8 +2,14 @@
 
 declare base=${HOME}/dotfiles
 
-hash cpp 2>/dev/null || { echo "Error: Install cpp compiler first"; exit 1;}
-hash curl 2>/dev/null || { echo "Error: curl is not installed. Please install curl first."; exit 1;}
+if [[ ! -a $(which cpp) ]]; then
+    echo "Error: Install cpp compiler first"
+    exit 1
+fi
+if [[ ! -a $(which curl) ]]; then
+    echo "Error: Install curl first"
+    exit 1
+fi
 
 # Get font
 if [ ! -f ~/.fonts/Meslo\ LG\ M\ Regular\ for\ Powerline.ttf ]; then
