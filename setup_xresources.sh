@@ -22,5 +22,6 @@ fi
 sudo cp ${base}/xkr-clipboard.pl /usr/lib/urxvt/perl/xkr-clipboard
 
 cpp ${base}/Xresources > ~/.Xresources
+cd ~; ln -s ~/.Xresources .Xdefaults-$(hostname)
 
 xrdb -load ~/.Xresources
