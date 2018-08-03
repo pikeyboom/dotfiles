@@ -61,7 +61,7 @@ set rtp+=~/dotfiles
 syntax enable
 set background=dark
 let base16colorspace=256
-colorscheme base16-flat
+colorscheme $BASE16_COLORSCHEME
 
 " fzf options
 noremap <c-f> :Files<CR>
@@ -124,6 +124,7 @@ nnoremap <leader>cj :YcmCompleter GoTo<CR>
 nnoremap <leader>ct :YcmCompleter GetType<CR>
 nnoremap <leader>cd :YcmCompleter GetDoc<CR>
 nnoremap <leader>cr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>ch :YcmCompleter GoToInclude<CR>
 
 " tagbar config. Enable it using this key map:
 nmap <F8> :TagbarToggle<CR>

@@ -21,16 +21,20 @@ if ! zgen saved; then
 fi
 
 export EDITOR=vim
+export BASE16_COLORSCHEME=base16-atelier-estuary
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/$BASE16_COLORSCHEME.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 
 BUILD_CORES=8
-# if type distcc > /dev/null; then
-#   export CCACHE_PREFIX="distcc"
-#   BUILD_CORES=48
-# fi
+if type distcc > /dev/null; then
+  export CCACHE_PREFIX="distcc"
+  BUILD_CORES=48
+fi
 
 # Default to ccache if available
 if type ccache > /dev/null; then
-  ccache -M 5 > /dev/null
+  ccache -M 10 > /dev/null
   export CXX='ccache /usr/bin/c++'
   # Don't use cached preprocessor output
   export CCACHE_CPP2=true
@@ -64,5 +68,10 @@ source ~/.pathrc
 # source local rc commands
 if [ -f ~/.localrc ]; then
   source ~/.localrc
+fi
+
+# populate env variables for dircolors
+if [ -f ~/.dircolors ]; then
+  eval "$(dircolors ~/.dircolors)"
 fi
 
