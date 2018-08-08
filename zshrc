@@ -21,10 +21,12 @@ if ! zgen saved; then
 fi
 
 export EDITOR=vim
-export BASE16_COLORSCHEME=base16-atelier-estuary
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/$BASE16_COLORSCHEME.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 BUILD_CORES=8
 if type distcc > /dev/null; then
