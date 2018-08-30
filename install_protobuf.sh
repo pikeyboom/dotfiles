@@ -13,7 +13,7 @@ if [[ ! -a $(which libtoolize) ]]; then
     exit 1
 fi
 
-cd /tmp
+cd
 echo "Downloading protobuf..."
 curl -OL https://github.com/google/protobuf/archive/v$VERSION.tar.gz
 tar xvf v$VERSION.tar.gz
