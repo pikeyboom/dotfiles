@@ -47,7 +47,7 @@ set smartcase
 autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy convention
 autocmd Filetype xml setlocal ts=4 sw=4 tw=0
-autocmd Filetype json setlocal ts=2 sw=2 tw=80 "JSON
+autocmd Filetype json setlocal ts=2 sw=2 tw=0 "JSON convention
 
 " Set xmllint to 4 space indentation
 let $XMLLINT_INDENT='    '
