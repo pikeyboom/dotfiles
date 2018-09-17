@@ -47,6 +47,7 @@ set smartcase
 autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy convention
 autocmd Filetype xml setlocal ts=4 sw=4 tw=0
+autocmd Filetype json setlocal ts=2 sw=2 tw=80 "JSON
 
 " Set xmllint to 4 space indentation
 let $XMLLINT_INDENT='    '
@@ -174,3 +175,9 @@ augroup fswitch_cpp
    au BufEnter *.hpp let b:fswitchdst  = 'h,cpp'
    au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,..'
 augroup END
+
+" Remove obnoxious noises vim makes
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif

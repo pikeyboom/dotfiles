@@ -56,6 +56,7 @@ alias make='make -j$BUILD_CORES'
 alias now='watch -x -t -n 0.01 date +%s.%N'
 alias du='du -h --max-depth=1'
 alias df='df -h'
+alias dstart='docker start -i'
 
 # Alias to check for avx and avx2 instructions
 alias checkavx1='find -type f -executable | xargs objdump --disassemble | egrep "(vbroadcastss|vbroadcastsd|vbroadcastf128|vinsertf128|vextractf128|vmaskmovps|vmaskmovpd|vpermilps|vpermilpd|vperm2f128|vzeroall|vzeroupper)"'
