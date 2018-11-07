@@ -57,7 +57,8 @@ alias now='watch -x -t -n 0.01 date +%s.%N'
 alias du='du -h --max-depth=1'
 alias df='df -h'
 alias dstart='docker start -i'
-alias appendpath='export PATH=$PATH:$(pwd)'
+alias ap='export PATH=$PATH:$(pwd)'
+alias dls='docker ps -a'
 
 # Alias to check for avx and avx2 instructions
 alias checkavx1='find -type f -executable | xargs objdump --disassemble | egrep "(vbroadcastss|vbroadcastsd|vbroadcastf128|vinsertf128|vextractf128|vmaskmovps|vmaskmovpd|vpermilps|vpermilpd|vperm2f128|vzeroall|vzeroupper)"'
@@ -65,17 +66,8 @@ alias checkavx1='find -type f -executable | xargs objdump --disassemble | egrep 
 alias checkavx2='find -type f -executable | xargs objdump --disassemble | egrep "(vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vbroadcasti128|vinserti128|vextracti128|vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vpgatherdd|vpgatherdq|vpgatherqd|vpgatherqq|vpmaskmovd|vpmaskmovq|vpermps|vpermd|vpermpd|vpermq|vperm2i128|vpblendd|vpsllvd|vpsllvq|vpsrlvd|vpsrlvq|vpsravd)"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.localrc ] && source ~/.localrc
+[ -f ~/.pathrc ] && source ~/.pathrc
+[ -f ~/.dircolors ] && eval "$(dircolors ~/.dircolors)"
 
-# Adjust the path
-source ~/.pathrc
-
-# source local rc commands
-if [ -f ~/.localrc ]; then
-  source ~/.localrc
-fi
-
-# populate env variables for dircolors
-if [ -f ~/.dircolors ]; then
-  eval "$(dircolors ~/.dircolors)"
-fi
 
