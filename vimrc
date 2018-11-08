@@ -45,9 +45,10 @@ set wildmenu
 set smartcase
 
 autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
-autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy convention
+autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy cpp convention
 autocmd Filetype xml setlocal ts=4 sw=4 tw=0
 autocmd Filetype json setlocal ts=2 sw=2 tw=0 "JSON convention
+autocmd Filetype cmake setlocal ts=2 sw=2 tw=0 "cmake convention
 
 " Set xmllint to 4 space indentation
 let $XMLLINT_INDENT='    '
@@ -129,6 +130,10 @@ nnoremap <leader>ct :YcmCompleter GetType<CR>
 nnoremap <leader>cd :YcmCompleter GetDoc<CR>
 nnoremap <leader>cr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>ch :YcmCompleter GoToInclude<CR>
+
+" Git commands
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
 
 " tagbar config. Enable it using this key map:
 nmap <F8> :TagbarToggle<CR>
