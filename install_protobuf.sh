@@ -1,6 +1,6 @@
 ## Install protobuf
 ORIGINAL_DIR=$(pwd)
-VERSION=3.1.0
+VERSION=3.5.0
 
 # Check for required dependencies before continuing:
 if [[ ! -a $(which autoreconf) ]]; then
