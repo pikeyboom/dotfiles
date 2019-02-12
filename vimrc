@@ -28,6 +28,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'justinmk/vim-sneak' " Faster than using 'f'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
 
 call plug#end()            " required
 
@@ -42,23 +43,45 @@ set ignorecase
 set smartcase
 set nomousehide 
 set wildmenu
-set smartcase
 
-autocmd Filetype python setlocal ts=4 sw=4 tw=0 "python settings
+autocmd Filetype python setlocal ts=4 sw=4 tw=79 "python settings
 autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy cpp convention
 autocmd Filetype xml setlocal ts=4 sw=4 tw=0
 autocmd Filetype json setlocal ts=2 sw=2 tw=0 "JSON convention
 autocmd Filetype cmake setlocal ts=2 sw=2 tw=0 "cmake convention
 
-" Set xmllint to 4 space indentation
-let $XMLLINT_INDENT='    '
+" syntastic recommended settings
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+" flake8 settings
+" let g:flake8_show_in_gutter=1  " show in gutter
+" let flake8_error_marker='E'     " set error marker to 'EE'
+" let flake8_warning_marker='W'   " set warning marker to 'WW'
+" let flake8_pyflake_marker=''     " disable PyFlakes warnings
+" let flake8_complexity_marker=''  " disable McCabe complexity warnings
+" let flake8_naming_marker=''      " disable naming warnings
+" highlight link Flake8_Error      Error
+" highlight link Flake8_Warning    WarningMsg
+" highlight link Flake8_Complexity WarningMsg
+" highlight link Flake8_Naming     WarningMsg
+" highlight link Flake8_PyFlake    WarningMsg
+"
+" autocmd BufWritePost *.py call Flake8() " Run Flake8() every time file is saved
+
+let python_highlight_all=1 " Vim built-in syntax highlighting for python
+
+let $XMLLINT_INDENT='    ' " Set xmllint to 4 space indentation
 
 filetype plugin indent on    " required
 " Never automatically continue comment on next line
 " au FileType * set fo-=c fo-=r fo-=o
 
-" add to runtime paths for Ultisnips
-set rtp+=~/dotfiles
 
 syntax enable
 set background=dark
@@ -75,35 +98,33 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-i': 'vsplit' }
 
+" configure ALE linters
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
+
 
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
-
-" enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-
-" show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#enabled = 1 " enable the list of buffers
+let g:airline#extensions#ale#enabled = 1 " enable ale messages in statusline
+let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename
 let g:airline_powerline_fonts = 1
-" Turn off prompting to load .ycm_extra_conf.py:
-let g:ycm_confirm_extra_conf = 0
-
-" Let YouCompleteMe use tag files for completion as well:
-let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf = 0 " Turn off prompting to load .ycm_extra_conf.py
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YouCompleteMe use tag files for completion as well:
 
 " NERD Tree shortcut
 map <F5> :NERDTreeToggle<CR>
 let NERDTreeChDirMode = 2
 nnoremap <leader>n :NERDTree .<CR>
 
-" Ultisnips config:
+" Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
+set rtp+=~/dotfiles " add to runtime paths for Ultisnips
 
 " Mapping for fswitch, to switch between header
 " and source:
@@ -120,20 +141,23 @@ nnoremap <c-k> <C-w>k
 nnoremap <c-h> <C-w>h
 nnoremap <c-l> <C-w>l
 
+" Similar style for setting splits to even spacing
+" nnoremap <c-=> <C-w>=
+
 " YCM
 nnoremap <leader>ci :YcmCompleter GoToImprecise<CR>
 nnoremap <leader>cj :YcmCompleter GoTo<CR>
-" nnoremap <leader>ch :YcmCompleter GoToDeclaration<CR>
-" nnoremap <leader>cl :YcmCompleter GoToDefinition<CR>
-
 nnoremap <leader>ct :YcmCompleter GetType<CR>
 nnoremap <leader>cd :YcmCompleter GetDoc<CR>
 nnoremap <leader>cr :YcmCompleter GoToReferences<CR>
-nnoremap <leader>ch :YcmCompleter GoToInclude<CR>
+" nnoremap <leader>ch :YcmCompleter GoToInclude<CR>
+" nnoremap <leader>ch :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>cl :YcmCompleter GoToDefinition<CR>
 
 " Git commands
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 " tagbar config. Enable it using this key map:
 nmap <F8> :TagbarToggle<CR>
@@ -144,29 +168,25 @@ let g:tagbar_autofocus = 1
 " directory, and all the way up until it finds one:
 set tags=./tags;/
 
-" Mapping to close the file in the current buffer:
-nnoremap <leader>q :Sayonara!<CR>
+nnoremap <leader>q :Sayonara!<CR> " Mapping to close the file in the current buffer:
 
 " tmux navigation
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
-
+" Use tab and shift+Tab to switch buffers
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+let g:tmux_navigator_save_on_switch = 1 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 
-" This will execute the update command on leaving vim to a tmux pane. Default is Zero
-let g:tmux_navigator_save_on_switch = 1
-
-" minimaist vim-sneak
-let g:sneak#label = 1
+" Vim sneak
+let g:sneak#label = 1 " minimaist vim-sneak
 
 " replace s with f for sneaking
-nmap f <Plug>Sneak_s
+nmap f <Plug>Sneak_s 
 nmap F <Plug>Sneak_S
 
 " Set up fswitch to work with the directory structures
