@@ -98,6 +98,10 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-i': 'vsplit' }
 
+" Setting this to the left until the kernel issue referenced here is resolved
+" https://github.com/junegunn/fzf/issues/1486
+let g:fzf_layout = { 'left': '~70%' }
+
 " configure ALE linters
 let g:ale_linters = {
 \   'python': ['flake8'],
