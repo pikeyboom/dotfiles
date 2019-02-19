@@ -71,3 +71,6 @@ for f in $files; do
 done;
 
 cd && source .zshrc
+
+vim +'PlugInstall --sync' +qa
+${HOME}/.vim/plugged/YouCompleteMe/install.py --clang-completer
