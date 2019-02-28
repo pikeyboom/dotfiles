@@ -1,6 +1,8 @@
-## Install protobuf
+#!/bin/bash
+
+## Install grpc
 ORIGINAL_DIR=$(pwd)
-VERSION=3.5.0
+VERSION=1.12.0
 
 # Check for required dependencies before continuing:
 if [[ ! -a $(which autoreconf) ]]; then
@@ -13,15 +15,17 @@ if [[ ! -a $(which libtoolize) ]]; then
     exit 1
 fi
 
+if [[ ! -a $(which git) ]]; then
+    echo "Error: git is not installed. Please install git first.";
+    exit 1
+fi
+
 cd
-echo "Downloading protobuf..."
-curl -OL https://github.com/google/protobuf/archive/v$VERSION.tar.gz
-tar xvf v$VERSION.tar.gz
-cd protobuf-$VERSION
-./autogen.sh
-./configure
+echo "Downloading grpc..."
+git clone -q -b v$VERSION https://github.com/grpc/grpc
+cd grpc
+git submodule update --init
 make
-make check
 sudo make install
-sudo ldconfig # refresh shared library cache.
+
 cd $ORIGINAL_DIR
