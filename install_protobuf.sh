@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## Install protobuf
 ORIGINAL_DIR=$(pwd)
 VERSION=3.5.0
