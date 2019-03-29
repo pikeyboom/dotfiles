@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 OLD_PWD=$(pwd)
 cd /tmp
