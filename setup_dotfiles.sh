@@ -15,6 +15,10 @@ if [[ ! -a $(which unzip) ]]; then
     echo "Error: unzip is not installed. Please install unzip first.";
     exit 1
 fi
+if [[ ! -a $(which vim) ]]; then
+    echo "Error: vim is not installed. Please install vim first.";
+    exit 1
+fi
 
 # Get the Base16 colour schemes
 mkdir -p ~/.config
