@@ -1,12 +1,10 @@
 call plug#begin('~/.vim/plugged')
-
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'ihacklog/HiCursorWords'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'tomtom/tcomment_vim' " Plugin to assist with commenting out blocks of text:
 Plug 'SirVer/ultisnips' " Track the ultisnips engine.
@@ -29,11 +27,10 @@ Plug 'justinmk/vim-sneak' " Faster than using 'f'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
+call plug#end()
 
-call plug#end()            " required
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 set expandtab
 set splitbelow
@@ -49,30 +46,6 @@ autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy cpp convention
 autocmd Filetype xml setlocal ts=4 sw=4 tw=0
 autocmd Filetype json setlocal ts=2 sw=2 tw=0 "JSON convention
 autocmd Filetype cmake setlocal ts=2 sw=2 tw=0 "cmake convention
-
-" syntastic recommended settings
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
-" flake8 settings
-" let g:flake8_show_in_gutter=1  " show in gutter
-" let flake8_error_marker='E'     " set error marker to 'EE'
-" let flake8_warning_marker='W'   " set warning marker to 'WW'
-" let flake8_pyflake_marker=''     " disable PyFlakes warnings
-" let flake8_complexity_marker=''  " disable McCabe complexity warnings
-" let flake8_naming_marker=''      " disable naming warnings
-" highlight link Flake8_Error      Error
-" highlight link Flake8_Warning    WarningMsg
-" highlight link Flake8_Complexity WarningMsg
-" highlight link Flake8_Naming     WarningMsg
-" highlight link Flake8_PyFlake    WarningMsg
-"
-" autocmd BufWritePost *.py call Flake8() " Run Flake8() every time file is saved
 
 let python_highlight_all=1 " Vim built-in syntax highlighting for python
 
@@ -107,7 +80,6 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 
-
 " vim-airline: ensure the status line is always displayed
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1 " enable the list of buffers
@@ -139,14 +111,23 @@ map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
 
 " custom vim split commands
 
-" Tmux style pane navigation
+" Tmux style pane navigation in vim
 nnoremap <c-j> <C-w>j
 nnoremap <c-k> <C-w>k
 nnoremap <c-h> <C-w>h
 nnoremap <c-l> <C-w>l
 
-" Similar style for setting splits to even spacing
-" nnoremap <c-=> <C-w>=
+" tmux navigation through vim splits
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+" Use tab and shift+Tab to switch buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+let g:tmux_navigator_save_on_switch = 1 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 
 " YCM
 nnoremap <leader>ci :YcmCompleter GoToImprecise<CR>
@@ -174,17 +155,6 @@ set tags=./tags;/
 
 nnoremap <leader>q :Sayonara!<CR> " Mapping to close the file in the current buffer:
 
-" tmux navigation
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
-" Use tab and shift+Tab to switch buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-let g:tmux_navigator_save_on_switch = 1 " This will execute the update command on leaving vim to a tmux pane. Default is Zero
 
 " Vim sneak
 let g:sneak#label = 1 " minimaist vim-sneak
