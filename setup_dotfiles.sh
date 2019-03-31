@@ -15,16 +15,6 @@ if [[ ! -a $(which unzip) ]]; then
     echo "Error: unzip is not installed. Please install unzip first.";
     exit 1
 fi
-if [[ ! -a $(which vim) ]]; then
-    echo "Error: vim is not installed. Please install vim first.";
-    exit 1
-fi
-
-# Get the Base16 colour schemes
-mkdir -p ~/.config
-if [ ! -d ~/.config/base16-shell ]; then
-  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-fi
 
 # Set up tmux plugin manager:
 mkdir -p ~/.tmux/plugins
@@ -35,18 +25,6 @@ fi
 # Set up zgen, the zsh plugin manager:
 if [ ! -d ~/.zgen ]; then
   git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-fi
-
-# Get vim-plug
-if [ ! -f ~/.vim/autoload/plug.vim ]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-if [ -f ~/.gitconfig ]; then
-  echo "Git config already exists. Git options will not be appended"
-else
-  cat ${base}/gitconfig.include > ~/.gitconfig
 fi
 
 files=(.zshrc .vimrc .tmux.conf .pathrc)
@@ -67,7 +45,7 @@ for f in $files; do
     fi
     if [[ -e ${base}/${src} ]]; then
       echo "Installing $f"
-      ln -s ${base}${src} $f
+      ln -s ${base}${src} $HOME/$f
     fi
   else
     echo "Skipping synlink $f"
@@ -76,5 +54,3 @@ done;
 
 cd && source .zshrc
 
-vim +'PlugInstall --sync' +qa
-${HOME}/.vim/plugged/YouCompleteMe/install.py --clang-completer
