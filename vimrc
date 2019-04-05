@@ -114,7 +114,7 @@ set rtp+=~/dotfiles " add to runtime paths for Ultisnips
 nnoremap <leader>s :FSHere<CR>
 
 " Key mappings for clang-format, to format source code:
-map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.6.py<CR>
+map <leader>f :py3f /usr/share/vim/addons/syntax/clang-format-6.0.py<CR>
 
 " custom vim split commands
 
