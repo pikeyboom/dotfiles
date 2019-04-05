@@ -28,12 +28,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-BUILD_CORES=8
-if type distcc > /dev/null; then
-  export CCACHE_PREFIX="distcc"
-  BUILD_CORES=48
-fi
-
 # Default to ccache if available
 if type ccache > /dev/null; then
   ccache -M 10 > /dev/null
@@ -51,8 +45,7 @@ source ~/dotfiles/ninja/_ninja
 alias l='ls -lhtr'
 
 # general aliases
-alias ja='ninja -j$BUILD_CORES && ninja tests -j$BUILD_CORES'
-alias make='make -j$BUILD_CORES'
+alias ja='ninja'
 alias now='watch -x -t -n 0.01 date +%s.%N'
 alias du='du -h --max-depth=1'
 alias df='df -h'
