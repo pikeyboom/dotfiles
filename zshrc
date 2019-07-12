@@ -45,7 +45,7 @@ source ~/dotfiles/ninja/_ninja
 alias l='ls -lhtr'
 
 # general aliases
-alias ja='ninja'
+alias ja='ninja -j12'
 alias now='watch -x -t -n 0.01 date +%s.%N'
 alias du='du -h --max-depth=1'
 alias df='df -h'
@@ -62,5 +62,8 @@ alias checkavx2='find -type f -executable | xargs objdump --disassemble | egrep 
 [ -f ~/.localrc ] && source ~/.localrc
 [ -f ~/.pathrc ] && source ~/.pathrc
 [ -f ~/.dircolors ] && eval "$(dircolors ~/.dircolors)"
+[ -f ~/venv/bin/activate ] && source ~/venv/bin/activate # Source virtual environment if activate script exists
 
-
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

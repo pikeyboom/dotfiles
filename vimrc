@@ -53,6 +53,7 @@ autocmd Filetype cpp setlocal ts=2 sw=2 tw=80 "quanergy cpp convention
 autocmd Filetype xml setlocal ts=4 sw=4 tw=0
 autocmd Filetype json setlocal ts=2 sw=2 tw=0 "JSON convention
 autocmd Filetype cmake setlocal ts=2 sw=2 tw=0 tw=79 "cmake convention
+autocmd Filetype md setlocal tw=80
 
 au BufNewFile,BufRead Jenkinsfile setf groovy " Treat Jenkinsfile's with groovy syntax
 
@@ -73,20 +74,14 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-" fzf options
-noremap <c-f> :Files<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-i': 'vsplit' }
+" F6 -> reload all buffers and keep color scheme intact
+" noremap <F6> :execute 'bufdo :e' | source $VIMRUNTIME/syntax/syntax.vim
 
-" Setting this to the left until the kernel issue referenced here is resolved
-" https://github.com/junegunn/fzf/issues/1486
-let g:fzf_layout = { 'left': '~70%' }
 
 " configure ALE linters
 let g:ale_linters = {
 \   'python': ['flake8'],
+\   'cpp': ['clangtidy'],
 \}
 
 " vim-airline: ensure the status line is always displayed
@@ -144,9 +139,24 @@ nnoremap <leader>cj :YcmCompleter GoTo<CR>
 nnoremap <leader>ct :YcmCompleter GetType<CR>
 nnoremap <leader>cd :YcmCompleter GetDoc<CR>
 nnoremap <leader>cr :YcmCompleter GoToReferences<CR>
-" nnoremap <leader>ch :YcmCompleter GoToInclude<CR>
-" nnoremap <leader>ch :YcmCompleter GoToDeclaration<CR>
-" nnoremap <leader>cl :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>cf :YcmCompleter FixIt<CR>
+" set completopt-=preview "Disable preview window on completions
+
+" fzf mappings
+nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>ff :Files<CR>
+noremap <leader>fh :BCommits<CR>
+noremap <leader>fc :BLines<CR>
+noremap <leader>fb :Buffers<CR>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-i': 'vsplit' }
+
+" Check this link if having issues with displaying 'down'
+" https://github.com/junegunn/fzf/issues/1486
+let g:fzf_layout = { 'down': '~40%' }
 
 " Git commands
 nnoremap <leader>gs :Gstatus<CR>
@@ -163,7 +173,6 @@ let g:tagbar_autofocus = 1
 set tags=./tags;/
 
 nnoremap <leader>q :Sayonara!<CR> " Mapping to close the file in the current buffer:
-
 
 " Vim sneak
 let g:sneak#label = 1 " minimaist vim-sneak
@@ -189,3 +198,6 @@ set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
+
+" Map <leader>+c to run 'npm run build'
+map <F11> :!npm run build<CR>
