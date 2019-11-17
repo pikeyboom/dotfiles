@@ -156,7 +156,7 @@ let g:fzf_action = {
 
 " Check this link if having issues with displaying 'down'
 " https://github.com/junegunn/fzf/issues/1486
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'up': '~40%' }
 
 " Git commands
 nnoremap <leader>gs :Gstatus<CR>
@@ -198,6 +198,3 @@ set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
-
-" Map <leader>+c to run 'npm run build'
-map <F11> :!npm run build<CR>
