@@ -31,7 +31,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # Default to ccache if available
 if type ccache > /dev/null; then
   ccache -M 10 > /dev/null
-  export CXX='ccache /usr/bin/c++'
+  export CCACHE_PREFIX='icecc'
   # Don't use cached preprocessor output
   export CCACHE_CPP2=true
 fi
@@ -45,13 +45,11 @@ source ~/dotfiles/ninja/_ninja
 alias l='ls -lhtr'
 
 # general aliases
-alias ja='ninja -j12'
+alias ja='ninja -j48'
 alias now='watch -x -t -n 0.01 date +%s.%N'
 alias du='du -h --max-depth=1'
 alias df='df -h'
 alias dstart='docker start -i'
-alias ap='export PATH=$PATH:$(pwd)'
-alias dls='docker ps -a'
 
 # Alias to check for avx and avx2 instructions
 alias checkavx1='find -type f -executable | xargs objdump --disassemble | egrep "(vbroadcastss|vbroadcastsd|vbroadcastf128|vinsertf128|vextractf128|vmaskmovps|vmaskmovpd|vpermilps|vpermilpd|vperm2f128|vzeroall|vzeroupper)"'

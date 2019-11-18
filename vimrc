@@ -1,3 +1,6 @@
+" Install termdebug
+packadd termdebug
+
 " Install vim-plug if it isn't installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -34,6 +37,7 @@ Plug 'justinmk/vim-sneak' " Faster than using 'f'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
+Plug 'heavenshell/vim-jsdoc'
 call plug#end()
 
 set nocompatible
@@ -192,6 +196,20 @@ augroup fswitch_cpp
    au BufEnter *.hpp let b:fswitchdst  = 'h,cpp'
    au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,..'
 augroup END
+
+" Function, courtesy of Marc Gallant, to make it easy
+" to switch between C and C++ header and source files
+" using fzf.
+function! FZFSameName(sink, pre_command, post_command)
+    let current_file_no_extension = expand("%:t:r")
+    let current_file_with_extension = expand("%:t")
+    execute a:pre_command
+    call fzf#run(fzf#wrap({
+      \ 'source': 'find -name ' . current_file_no_extension . '.* | grep -Ev *' . current_file_with_extension . '$',
+      \ 'options': '--select-1', 'sink': a:sink}))
+    execute a:post_command
+endfunction
+nnoremap <leader>ss :call FZFSameName('e', '', '')<CR>
 
 " Remove obnoxious noises vim makes
 set noerrorbells visualbell t_vb=
